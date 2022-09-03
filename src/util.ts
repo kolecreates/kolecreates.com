@@ -1,7 +1,7 @@
-import type { MDXInstance, Post } from "./types";
+import type { MDXInstance, Published, Taggable } from "./types";
 
-export function sortMDByDate(posts: MDXInstance<Post>[] = []) {
-	return posts.sort(
+export function sortMDByDate<T extends Published>(pages: MDXInstance<T>[] = []) {
+	return pages.sort(
 		(a, b) =>
 			new Date(b.frontmatter.publishDate).valueOf() -
 			new Date(a.frontmatter.publishDate).valueOf()
@@ -9,31 +9,31 @@ export function sortMDByDate(posts: MDXInstance<Post>[] = []) {
 }
 
 // This function expects the @arg posts to be sorted by sortMDByDate()
-export function getPreviousAndNextPosts(
+export function getPreviousAndNextPage<T>(
 	currentSlug: string,
-	posts: MDXInstance<Post>[] = []
+	pages: MDXInstance<T>[] = []
 ) {
-	const index = posts.findIndex(({ url }) => url === currentSlug);
+	const index = pages.findIndex(({ url }) => url === currentSlug);
 	return {
-		prev: posts[index + 1] ?? null,
-		next: posts[index - 1] ?? null,
+		prev: pages[index + 1] ?? null,
+		next: pages[index - 1] ?? null,
 	};
 }
 
-export function getAllTags(posts: MDXInstance<Post>[] = []) {
+export function getAllTags<T extends Taggable>(pages: MDXInstance<T>[] = []) {
 	const allTags = new Set<string>();
-	posts.forEach((post) => {
-		post.frontmatter.tags?.map((tag) => allTags.add(tag.toLowerCase()));
+	pages.forEach((page) => {
+		page.frontmatter.tags?.map((tag) => allTags.add(tag.toLowerCase()));
 	});
 	return [...allTags];
 }
 
-export function getAllTagsWithCount(posts: MDXInstance<Post>[] = []): {
+export function getAllTagsWithCount<T extends Taggable>(pages: MDXInstance<T>[] = []): {
 	[key: string]: number;
 } {
-	return posts.reduce((prev, post) => {
+	return pages.reduce((prev, page) => {
 		const currTags = { ...prev };
-		post.frontmatter.tags?.forEach(function (tag) {
+		page.frontmatter.tags?.forEach(function (tag) {
 			currTags[tag] = (currTags[tag] || 0) + 1;
 		});
 		return currTags;

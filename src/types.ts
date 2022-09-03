@@ -18,11 +18,28 @@ type PaginationLink = {
 	srLabel?: string;
 };
 
-interface Post {
+interface Taggable {
+	tags?: string[];
+}
+
+interface Published {
+	publishDate?: string;
+}
+
+
+interface PageSubtype extends Taggable, Published {
+	type: string;
+}
+
+interface Post extends PageSubtype {
 	title: string;
 	description: string;
-	publishDate?: Date;
-	tags?: string[];
+}
+
+interface Project extends PageSubtype {
+	title: string;
+	description: string;
+	status: "development" | "completed" | "archived";
 }
 
 export type {
@@ -33,4 +50,8 @@ export type {
 	SiteMeta,
 	PaginationLink,
 	Post,
+	Project,
+	Taggable,
+	Published,
+	PageSubtype,
 };

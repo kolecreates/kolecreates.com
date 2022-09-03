@@ -1,14 +1,16 @@
 ---
 import PageLayout from "@/layouts/Base";
 import { getAllTagsWithCount } from "@/util";
-import type { Post } from "@/types";
+import type { PageSubtype, Post, Project, MDXInstance } from "@/types";
 
 const allPosts = await Astro.glob<Post>("../posts/*.mdx");
-const allTags = getAllTagsWithCount(allPosts);
+const allProjects = await Astro.glob<Project>("../projects/*.mdx");
+const allPages = [...allPosts, ...allProjects] as MDXInstance<PageSubtype>[];
+const allTags = getAllTagsWithCount(allPages);
 
 const meta = {
 	title: "All Tags",
-	description: "All Tags from my blogs",
+	description: "All Tags from my posts and projects",
 };
 ---
 
@@ -19,14 +21,14 @@ const meta = {
 			Object.keys(allTags).map((tag) => (
 				<li class="flex items-center gap-x-2">
 					<a
-						class="inline-block cactus-link"
+						class="cactus-link inline-block"
 						href={`/tags/${tag}`}
 						title={`View posts with the tag: ${tag}`}
 					>
 						&#35;{tag}
 					</a>
 					<span class="inline-block">
-						- {allTags[tag]} Post{allTags[tag] > 1 && "s"}
+						- {allTags[tag]} Page{allTags[tag] > 1 && "s"}
 					</span>
 				</li>
 			))

@@ -2,7 +2,7 @@
 import BaseLayout from "./Base.astro";
 import { getLocaleTime, getPreviousAndNextPage, sortMDByDate } from "src/util";
 import Paginator from "@/components/Paginator";
-import type { Post } from "@/types";
+import type { Project } from "@/types";
 
 const {
 	content: { title, description, publishDate, tags },
@@ -10,24 +10,24 @@ const {
 } = Astro.props;
 const date = new Date(publishDate);
 const datetime = date.toISOString();
-const postDate = getLocaleTime(date);
+const projectDate = getLocaleTime(date);
 const currentPage = new URL(Astro.request.url).pathname;
-const allPosts = await Astro.glob<Post>("../pages/posts/*.mdx");
-const allSortedPosts = sortMDByDate(allPosts);
-const { prev, next } = getPreviousAndNextPage(currentPage, allSortedPosts);
+const allProjects = await Astro.glob<Project>("../pages/projects/*.mdx");
+const allSortedProjects = sortMDByDate(allProjects);
+const { prev, next } = getPreviousAndNextPage(currentPage, allSortedProjects);
 const paginationProps = {
 	...(prev && {
 		prevUrl: {
 			url: prev.url,
 			text: `← ${prev.frontmatter.title}`,
-			srLabel: " Previous Article:",
+			srLabel: " Previous Project:",
 		},
 	}),
 	...(next && {
 		nextUrl: {
 			url: next.url,
 			text: `${next.frontmatter.title} →`,
-			srLabel: "Next Article:",
+			srLabel: "Next Project:",
 		},
 	}),
 };
@@ -40,7 +40,7 @@ const paginationProps = {
 			<span
 				class="flex flex-col sm:gap-y-2 md:flex-row md:items-center md:gap-y-0 md:divide-x md:divide-textColor"
 			>
-				<time {datetime} class="pr-2">{postDate}</time>
+				<time {datetime} class="pr-2">{projectDate}</time>
 				{
 					tags?.length && (
 						<div class="flex items-center md:pl-2">

@@ -3,26 +3,27 @@ import PageLayout from "@/layouts/Base";
 import BlogPostPreview from "@/components/BlogPostPreview";
 import SocialList from "@/components/SocialList";
 import { sortMDByDate } from "@/util";
-import type { Post } from "@/types";
+import type { Post, Project } from "@/types";
+import ProjectPreview from "@/components/ProjectPreview";
 
 const meta = {
-	title: "Astro Cactus",
-	description: "The perfect starter for your perfect blog.",
+	title: "Home",
+	description: "Current projects, blog posts, and other stuff.",
 };
 
 const MAX_POSTS = 10;
+const MAX_PROJECTS = 10;
 const allPosts = await Astro.glob<Post>("./posts/*.mdx");
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+const allProjects = await Astro.glob<Project>("./projects/*.mdx");
+const allProjectsByDate = sortMDByDate(allProjects).slice(0, MAX_PROJECTS);
 ---
 
 <PageLayout meta={meta}>
 	<section>
-		<h1 class="mb-6 title">Hello World!</h1>
+		<h1 class="mb-6 title">Hi, my name is Kole.</h1>
 		<p class="mb-4">
-			Hi, I’m a theme for Astro, an example of how you can use this starter to
-			create a personal blog. If you want to know more about how you can
-			customise me, add more posts, and make it your own, click on one of the
-			social links which will take you to my repo.
+			Long-time creator of one-offs, experiments, and software solutions.
 		</p>
 		<SocialList />
 	</section>
@@ -38,53 +39,16 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 			}
 		</ul>
 	</section>
-	<section class="mt-16">
-		<h2 class="mb-4 text-xl title">Technologies</h2>
+	<section aria-label="Project list" class="mt-16">
+		<h2 class="mb-4 text-xl title">Projects</h2>
 		<ul class="space-y-4 sm:space-y-2">
-			<li>
-				<a
-					href="https://astro.build"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="inline-block cactus-link"
-					>Astro
-				</a>:
-				<p class="inline-block sm:mt-2">Build fast websites, faster.</p>
-			</li>
-			<li>
-				<a
-					href="https://docs.astro.build/en/guides/integrations-guide/image/"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="inline-block cactus-link"
-					>@astro/image
-				</a>:
-				<p class="inline-block sm:mt-2">
-					An Astro integration for optimising images in Astro projects.
-				</p>
-			</li>
-			<li>
-				<a
-					href="https://tailwindcss.com"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="inline-block cactus-link"
-					>Tailwind CSS
-				</a>:
-				<p class="inline-block sm:mt-2">
-					Rapidly build modern websites without ever leaving your HTML.
-				</p>
-			</li>
-			<li>
-				<a
-					href="https://mdxjs.com/"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="inline-block cactus-link"
-					>MDX
-				</a>:
-				<p class="inline-block sm:mt-2">Markdown for the component era.</p>
-			</li>
+			{
+				allProjectsByDate.map((p) => (
+					<li class="flex flex-wrap items-center gap-x-2 [&_q]:w-full">
+						<ProjectPreview project={p} as="h2" />
+					</li>
+				))
+			}
 		</ul>
 	</section>
 </PageLayout>

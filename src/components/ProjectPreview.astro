@@ -1,0 +1,29 @@
+---
+import type { IElement, MDXInstance, Project } from "@/types";
+import { getLocaleTime } from "@/util";
+export interface Props extends IElement {
+	project: MDXInstance<Project>;
+	withDesc?: boolean;
+}
+
+const { project, as: Element = "div", withDesc = false } = Astro.props as Props;
+const { publishDate } = project.frontmatter;
+const date = new Date(publishDate);
+const datetime = date.toISOString();
+const postDate = getLocaleTime(date, { month: "short" });
+---
+
+<time {datetime} class="min-w-[120px] text-gray-500">{postDate}</time>
+<Element>
+	<div class="flex flex-row">
+		<a href={project.url} class="inline-block cactus-link line-clamp-1">
+			{project.frontmatter.title}
+		</a>
+		<p class="ml-1">{project.frontmatter.status}</p>
+	</div>
+</Element>
+{
+	withDesc && (
+		<q class="block italic line-clamp-3">{project.frontmatter.description}</q>
+	)
+}

@@ -1,0 +1,135 @@
+---
+layout: "@/layouts/BlogPost"
+title: THE PROBLEM WITH SOFTWARE DEVELOPMENT
+publishDate: 18 Jul 2022
+description: A breakdown of the core challenges of software development and MAYBE how to overcome them.
+tags: ["cippi"]
+---
+
+## Preface
+
+Everything here is just notes, ideas, "spitballing". I have thought a lot about these things - but that does not make any of it true. In fact, much of this I wrote months ago and already have revisions I'd make. I will continue to make posts with my latest thoughts and progress. Old posts will not be edited - as I like to keep a history of how my thinking has evolved.
+
+## Core Challenges
+
+- Fragmentation & Dissonance
+- Cooperation
+- Unstructured Information
+- Accessibility
+
+### Fragmentation & Dissonance
+
+The industry operates via many asynchronous workers with differing opinions, abilities, objectives, and incentives. This results in the following:
+
+- Complexity
+- Inefficiency
+- Tribalism
+- Security Threats
+- Inaccessibility
+
+### Cooperation
+
+Computing and its applications is too complex and time consuming to do alone. Many machines and people are required. However, cooperative computing (i.e. distribution, parallelism, and interaction) is very hard. It often introduces the following:
+
+- Complexity
+- Cost
+- Fragmentation & Dissonance
+
+### Unstructured Information
+
+Information is often stored in a way that it is difficult to parse by a machine or human. Consequences of unstructured information include:
+
+- Information Loss
+- Reduced Capabilities
+- Lower Quality
+- Inaccessibility
+
+### Accessibility
+
+Most people are not able to effectively leverage the power of computing. The barrier to building software is still enormous. Some effects of inaccessibility are:
+
+- Limited Scale
+- Economic Disparity
+- Slow Adoption
+
+## Finding the Solution
+
+### What is out there already?
+
+| Name                                      | description                                                                                                                                                                       | pros                                                                                                        | cons                                                                                               |
+| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| [firebase](https://firebase.google.com/)  | App backend-as-a-service and mobile SDK w/ serverless RPC, real-time database integration, hosting, analytics, notifications, smooth GCP integration, and more stuff like ML kit. | developer experience, security, feature-rich, strong backing, sufficient for many applications, affordable. | proprietary, bounded control, domain specific                                                      |
+| [Amplify](https://aws.amazon.com/amplify) | Firebase competitor backed by AWS.                                                                                                                                                | feature-rich, security, strong backing, sufficient for many apps, affordable.                               | proprietary, poor dev exp., bounded control, domain specific.                                      |
+| [flutterflow](https://flutterflow.io/)    | Low-code mobile-first app builder w/ firebase, REST, monetization, and other integrations.                                                                                        | easy to get started, low-code, collaboration features, code import/export, useful integrations, affordable  | learning curve, limited control, proprietary builder, domain specific                              |
+| [Retool](https://retool.com/)             | Low-code react app builder                                                                                                                                                        | easy to start, database integrations, code import/export                                                    | learning curve, limited control, domain specific                                                   |
+| [OutSystems](https://www.outsystems.com/) | next-generation integrated development environment                                                                                                                                | strong set of capabilities, semi-full-stack, Git integration, low-code, high-code                           | steep learning curve, expensive, proprietary, domain specific, does not solve cooperation problems |
+
+### Guiding Principles
+
+Any comprehensive solution must address each of the described challenges. In sum, it must be:
+
+- harmonic
+- cooperative
+- structured
+- accessible
+
+In addition to the above, the solution must be _broadly capable_. It is much easier to address the core challenges if the domain is narrow. However, we need an approach that can be applied in many different contexts.
+
+### General Approach
+
+- Graph based architecture
+- Emperical Systems
+- Accessibility driven design
+- Monostack
+- Embodied Agreements
+- Incremental Scale Up
+
+#### Graph Based Architecture
+
+The ecosystem must be constructed ontop a solid foundation. The selected primitives must be mathematically based and capable of creating higher-order objects. This architecture uses graphs inspired by [GraphQL](https://graphql.org/) and the [Wolfram Physics Project](https://www.wolframphysics.org/).
+
+#### Emperical Systems
+
+Emperical systems are designed and driven via evidence based methods. Here are a few techniques that will be central:
+
+- Correctness Testing (e.g. Property based testing, unit testing, integration testing).
+- Dynamic testing (e.g. chaos testing, load testing)
+- A/B testing
+- Performance testing (i.e. measure of execution time, memory consumption)
+
+#### Accessibility Driven Design
+
+A product is obsolete if it cannot be understood or used by customers. A code base will rot if no developer can continue working on it once the original author has moved on. A complex system will take too long to complete if new contributors cannot be onboarded.
+
+Accessibility driven design is the methodology in which usability research and testing is part of the iteration cycle.
+
+#### Monostack
+
+This platform aims to have a single interface for the entire stack. The same GraphScript used to describe the front-end UI is used to perform database queries, handle requests on the server, and more. It's kinda like if there was a [GraphQL](https://graphql.org/) service for building full stack applications.
+
+#### Embodied Agreements
+
+Embodied Licensing and Contracts (i.e. rights, rules, and agreements that are stored and enforced by the system). These
+entities can require compensation via subscription, single transaction, trade, and metering w/ custom rules and amounts.
+
+##### Examples
+
+- Grants. (e.g. Department of Energy strategic funding, Epic Games Grants, Patreon)
+- Licensed Technology (e.g. ARM, QualComm 5G, Redis Modules)
+- Contracted (e.g. need an algorithm to parse medical documents, need a widget for a website)
+- Downstream Products & Services (e.g. Apps, Manufacturing as a Service, Enterprise solutions, IoT)
+
+#### Incremental Scale Up
+
+Problems of Scale:
+
+- Security threats (e.g. Supply chain attacks, DoS)
+- Cooperation
+- Identity (e.g. Bots)
+- Misbehavior
+- OS, Hardware, Infrastructure
+- Manipulation/Collusion
+
+Because the above problems are so significant, it is better to scale up incrementally as each problem of scale is addressed.
+
+Note, this platform does not require large scale to be valuable. It requires a minimum of 1.
